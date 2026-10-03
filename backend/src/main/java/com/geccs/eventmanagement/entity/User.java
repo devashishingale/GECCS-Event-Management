@@ -32,6 +32,26 @@ public class User {
     @Column(nullable = false)
     private String role = "STUDENT";
 
+    /*
+     * Institution to which the user belongs.
+     *
+     * Example:
+     * Government College of Engineering Aurangabad (GECA)
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "institution_id")
+    private Institution institution;
+
+    /*
+     * Academic unit to which the user belongs.
+     *
+     * Example:
+     * IT, CSE, MECH, ENTC, etc.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "academic_unit_id")
+    private AcademicUnit academicUnit;
+
     public Long getId() {
         return id;
     }
@@ -102,5 +122,21 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
+    }
+
+    public AcademicUnit getAcademicUnit() {
+        return academicUnit;
+    }
+
+    public void setAcademicUnit(AcademicUnit academicUnit) {
+        this.academicUnit = academicUnit;
     }
 }
